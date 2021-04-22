@@ -8,17 +8,18 @@ function EditCard() {
     const [deck, setDeck] = useState([]);
     const [card, setCard] = useState({});
     const { deckId, cardId } = useParams();
-    const initialFormState = ({
+    /* const initialFormState = ({
         "front": card.front,
         "back": card.back,
         "deckId": Number(deckId),
         "id": cardId
-    });
-    const [formData, setFormData] = useState({ ...initialFormState });
+    }); */
+    //const [formData, setFormData] = useState({ ...initialFormState });
     
     const submitHandler = (event) => {
         event.preventDefault();
-        updateCard(formData);
+        updateCard(card);
+        history.go(0);
     };
 
     const cancelHandler = (event) => {
@@ -32,7 +33,7 @@ function EditCard() {
           setDeck(data);
           const cardData = await readCard(cardId);
           setCard(cardData);
-          setFormData(initialFormState);
+          //setFormData(initialFormState);
         }
         getDeck();
     }, [deckId, cardId]);
@@ -48,7 +49,7 @@ function EditCard() {
         </nav>
         <h2>Edit Card</h2>
         <form onSubmit={submitHandler}>
-        <CardForm formData={formData} setFormData={setFormData}/>
+        <CardForm card={card} setCard={setCard}/>
         <button type="button" class="btn btn-secondary" onClick={cancelHandler}>Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

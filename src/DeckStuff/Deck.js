@@ -44,8 +44,8 @@ function Deck() {
       const list = cards.map((card) => (
         <div class="card">
           <div class="card-body">
-            <p class="card-text">Front: {card.front}</p>
-            <p class="card-text">Back: {card.back}</p>
+            <p class="card-text"> {card.front}</p>
+            <p class="card-text"> {card.back}</p>
             <Link to={`/decks/${deckId}/cards/${card.id}/edit`}class="btn btn-secondary">Edit</Link>
             <button class="btn btn-danger" onClick={ () => cardDeleteHandler(card.id)}>Trash</button>
           </div>

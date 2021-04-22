@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from "react";
 import {Link, useParams, useHistory} from "react-router-dom";
 import { readDeck, updateDeck } from "../utils/api/index";
-import DeckForm from "./DeckForm";
+/* import DeckForm from "./DeckForm"; */
 
 function EditDeck() {
   const history = useHistory();
-    const [deck, setDeck] = useState([]);
+    const [deck, setDeck] = useState({});
     const { deckId } = useParams();
-    const initialFormState = {
-        "name": deck.name,
-        "description": deck.description
-      };
-      const [formData, setFormData] = useState({...initialFormState });
     
       const submitHandler = (event) => {
         event.preventDefault();
-        updateDeck(formData);
-        setFormData({ ...initialFormState });
+        async function update() {
+          await updateDeck(deck);
+        }
+        update();
+        history.go(0);
       };
 
       const cancelHandler = (event) => {
         event.preventDefault();
         history.go(-1);
+    };
+
+    const handleChange = ({ target }) => {
+      setDeck({
+        ...deck,
+        [target.name]: target.value,
+      });
     };
 
     useEffect(() => {
@@ -30,8 +35,15 @@ function EditDeck() {
           setDeck(data);
         }
         getDeck();
+        
     }, [deckId]);
 
+    if (!deck) {
+      return (
+        <p>Loading...</p>
+      );
+    }
+    else { 
     return (
         <>
         <nav aria-label="breadcrumb">
@@ -41,14 +53,23 @@ function EditDeck() {
                 <li class="breadcrumb-item active" aria-current="page">Edit Deck</li>
             </ol>
         </nav>
-        <h1>Edit Deck</h1>
+        <h1>Edit Deck: {deck.name}</h1>
         <form onSubmit={submitHandler}>
-        <DeckForm formData={formData} setFormData={setFormData}/>
-        <button class="btn btn-primary" type="submit">Submit</button>
-        <button class="btn btn-secondary" type="button" onClick={cancelHandler}>Cancel</button>
+          <div class="mb-3">
+            <label htmlFor="name" class="form-label">Name:</label>
+            <input class="form-control" placeholder={deck.name} type="text" id="name" name="name" value={deck.name} onChange={handleChange}/>
+          </div>
+          <div class="mb-3">
+            <label htmlFor="description" class="form-label">Description:</label>
+            <textarea class="form-control" placeholder={deck.description} id="description" name="description" value={deck.description} onChange={handleChange}/>
+          </div>
+          <br />
+          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-secondary" type="button" onClick={cancelHandler}>Cancel</button>
         </form>
         </>
     );
+  }
 };
 
 export default EditDeck;

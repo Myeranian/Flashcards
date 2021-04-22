@@ -26,19 +26,16 @@ function Study() {
             setIsFront(true);
             }
             else {
-                //return user to Home screen with useHistory()
                 history.go(-1);
             }
         }
     };
-    
 
     useEffect(() => {
         async function getDeck() {
           const data = await readDeck(deckId);
           setDeck(data);
-          const filteredCards = data.cards.filter((card) => card.deckId == deckId);
-          setCards(filteredCards);
+          setCards(data.cards);
         }
         getDeck();
     }, [deckId]);

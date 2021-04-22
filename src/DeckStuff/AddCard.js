@@ -6,19 +6,21 @@ import CardForm from "./CardForm";
 function AddCard() {
   const history = useHistory();
     const [deck, setDeck] = useState([]);
+    const [card, setCard] = useState({});
     const { deckId } = useParams();
-    const initialFormState = ({
+    /* const initialFormState = ({
         "front": "",
         "back": "",
         "deckId": deckId,
-    });
-    const [formData, setFormData] = useState({ ...initialFormState });
+    }); */
+    //const [formData, setFormData] = useState({ ...initialFormState });
     
 
     const submitHandler = (event) => {
         event.preventDefault();
-        createCard(deckId, formData);
-        setFormData(initialFormState);
+        createCard(deckId, card);
+        //setFormData(initialFormState);
+        history.go(0);
     };
 
     const cancelHandler = (event) => {
@@ -45,7 +47,7 @@ function AddCard() {
         </nav>
         <h1>Add Card</h1>
         <form onSubmit={submitHandler}>
-        <CardForm formData={formData} setFormData={setFormData} />
+        <CardForm card={card} setCard={setCard} />
         <button class="btn btn-primary" type="submit">Submit</button>
         <button class="btn btn-secondary" type="button" onClick={cancelHandler}>Cancel</button>
       </form>

@@ -1,9 +1,9 @@
 {
   "decks": [
     {
-      "id": 1,
       "name": "Rendering in React",
-      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. ",
+      "id": 1
     },
     {
       "name": "React Router",
@@ -11,9 +11,8 @@
       "id": 2
     },
     {
-      "name": "HTML Basics",
-      "description": "a journey through html basics",
-      "desription": "f",
+      "name": "html2",
+      "description": "test2",
       "id": 3
     }
   ],
@@ -55,8 +54,8 @@
       "id": 8
     },
     {
-      "front": "hippityhoop",
-      "back": "blippityBloop",
+      "front": "hippityhoop2",
+      "back": "blippityBloop2",
       "deckId": 3,
       "id": 12
     },
