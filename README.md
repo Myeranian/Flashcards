@@ -4,4 +4,6 @@ Flashcards is an app users can use as a study tool. Create, view, edit, and stud
 
 Screenshots
 
+![Home Screen](/screenshots/Home_screen.png)
+
 Built with React, react-router, and Bootstrap. 
