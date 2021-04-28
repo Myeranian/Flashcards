@@ -1,9 +1,8 @@
 # Flashcards App
-
 ### Flashcards is an app users can use as a study tool. Create, view, edit, and study decks of flashcards. 
 ---
-#### Screenshots
 
+#### Screenshots
 ##### Home 
 ![Home](/screenshots/Home_screen.png)
 
@@ -23,4 +22,4 @@
 ![EditCard](/screenshots/EditCard_screen.png)
 
 #### Technology Used
-###### Built with React, react-router, and Bootstrap. 
+###### Built with React using create-react-app, react-router, and Bootstrap. 
